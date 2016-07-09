@@ -12,3 +12,26 @@ export function generateGrid(height, width) {
   return cells
 
 }
+
+export function generateCells(height, width) {
+  let cells = List()
+  _.times(height, x => {
+    _.times(width, y => {
+      cells = cells.push(Map({x, y}))
+    })
+  })
+  return cells
+}
+
+export forEachCell(grid, cb) {
+  grid.forEach((row, x) => {
+    row.forEach((cell, y) => {
+      cb({cell, x, y})
+    })
+  })
+}
+
+export function randomcell(cells) {
+  const max = cells.size - 1
+  return randomNumber(0, max)
+}
