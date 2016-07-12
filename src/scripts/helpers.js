@@ -23,7 +23,7 @@ export function generateCells(height, width) {
   return cells
 }
 
-export forEachCell(grid, cb) {
+export function forEachCell(grid, cb) {
   grid.forEach((row, x) => {
     row.forEach((cell, y) => {
       cb({cell, x, y})
