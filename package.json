@@ -4,11 +4,14 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",
+    "start:debug": "DEBUG=true npm start",
+    "lint": "eslint src/scripts",
+    "build": "rm build/*; NODE_ENV=production webpack --config webpack.config.production.js --colors --bail"
   },
   "author": "",
   "license": "ISC",
-   "dependencies": {
+  "dependencies": {
     "babel": "~5.8.29",
     "classnames": "^2.2.1",
     "history": "^1.13.1",
@@ -30,6 +33,9 @@
     "babel-runtime": "~5.8.29",
     "css-loader": "^0.23.0",
     "eslint": "^1.10.2",
+    "eslint-config-airbnb": "^9.0.1",
+    "eslint-plugin-import": "^1.7.0",
+    "eslint-plugin-jsx-a11y": "^1.2.0",
     "eslint-loader": "^1.1.1",
     "eslint-plugin-react": "^3.11.1",
     "extract-text-webpack-plugin": "^0.9.1",

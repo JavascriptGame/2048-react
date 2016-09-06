@@ -1,0 +1,26 @@
+$background: #e8edf3;
+
+$board: #001427;
+$text-light: #F9F6F2;
+
+$empty-tile: #002B44;
+$tile-x: #8C2155;
+$tile-2: #86CB92;
+$tile-4: #70B28B;
+$tile-8: #609977;
+$tile-16: #40664F;
+$tile-32: #EDCF72;
+$tile-64: #EDC44B;
+$tile-128: #EAC317;
+$tile-256: #DDB500;
+$tile-512: #FF7759;
+$tile-1024: #F65E3B;
+$tile-2048: #BC2C1A;
+
+$cell-count: 4;
+$padding-count: 5;
+$ratio: 7.5;
+
+$board-size: 300;
+$cell-size: $board-size / ($cell-count + ($padding-count / $ratio));
+$cell-padding: $cell-size / $ratio;

@@ -1,0 +1,207 @@
+@import "reset";
+@import "variables";
+@import "mixins";
+
+* {
+  -webkit-touch-callout: none; /* prevent callout to copy image, etc when tap to hold */
+  -webkit-text-size-adjust: none; /* prevent webkit from resizing text to fit */
+  -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+  -webkit-user-select: none;
+}
+
+body {
+  background: $background;
+}
+
+/*
+ * Local
+ * Import and set as `className`
+ * For more info: https://github.com/css-modules/css-modules
+ */
+.wrapper {}
+
+/*
+ * Global (Standard usage)
+ */
+:global {
+  @for $row from 0 through 3 {
+    @for $column from 0 through 3 {
+      .cell-#{$row}-#{$column} {
+        top: px(#{$cell-padding + (($cell-size + $cell-padding) * $row)}) !important;
+        left: px(#{$cell-padding + (($cell-size + $cell-padding) * $column)}) !important;
+      }
+    }
+  }
+
+  .merged-appear { transform: scale(1.2); }
+  .merged-appear.merged-appear-active { transform: scale(1); }
+
+  .tile-appear { transform: scale(0.3); }
+  .tile-appear.tile-appear-active { transform: scale(1); }
+
+  .result-appear { transform: translateY(-10px); opacity: 1; }
+  .result-appear.result-appear-active { transform: translateY(-50px); opacity: 0; }
+
+  #overlay {
+    position: absolute;
+    box-sizing: border-box;
+    padding: 60px 20px;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 100;
+
+    &.lose { background: rgba(188, 44, 26, 0.8); }
+    &.win { background: rgba(107, 171, 144, 0.8); }
+
+    .restart {
+      @include center();
+
+      transition: .2s ease-in-out;
+      display: block;
+      width: 48px;
+      height: 48px;
+      cursor: pointer;
+
+      &:hover {
+        transform: rotate(180deg);
+      }
+    }
+
+    h2 {
+      color: white;
+      font-size: em(24);
+    }
+  }
+
+  #score {
+    width: 300px;
+    margin: 0 auto;
+    position: relative;
+
+    .result {
+      transition: all .5s ease-in-out;
+
+      top: 0;
+      left: 50%;
+      margin-left: -25px;
+      position: absolute;
+      width: 50px;
+      text-align: center;
+      z-index: 100;
+      color: black;
+    }
+
+    h3 {
+      text-align: center;
+      font-family: sans-serif;
+      font-size: em(24);
+      line-height: 40px;
+    }
+  }
+
+  main {
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  button {
+    border: 0;
+    border-radius: 5px;
+    line-height: 30px;
+    color: white;
+    background: $tile-512;
+    width: 100px;
+    margin: 20px 10px;
+    cursor: pointer;
+    outline: 0;
+
+    &:hover { background: $tile-1024; }
+  }
+
+  wrapper {
+    margin: 0 auto;
+
+    position: relative;
+    overflow: hidden;
+    width: px($board-size);
+    height: px($board-size);
+    display: block;
+    font-family: sans-serif;
+
+    border-radius: px($cell-padding / 2);
+    background-color: $board;
+  }
+
+
+  div.tile {
+    transition: all .1s ease-in-out;
+
+    position: absolute;
+    width: px($cell-size);
+    height: px($cell-size);
+    line-height: px($cell-size);
+    border-radius: px($cell-padding / 2);
+    text-align: center;
+    font-size: em(($cell-size / 50) * 16);
+  }
+
+  #tiles {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    z-index: 1;
+  }
+
+  #grid {
+    display: flex;
+    flex-wrap: wrap;
+    padding: px($cell-padding / 2);
+    position: relative;
+    z-index: 0;
+  }
+
+  column {
+    flex: 0 1 px($cell-size);
+    line-height: px($cell-size);
+    height: px($cell-size);
+    margin: px($cell-padding / 2);
+    color: white;
+    text-align: center;
+    border-radius: px($cell-padding / 2);
+    background-color: $empty-tile;
+  }
+
+  .tile-x {
+    background-color: $tile-x;
+    color: $text-light;
+    text-indent: -9999px;
+
+    &:after {
+      @include center();
+      content: "";
+
+      width: 32px;
+      height: 32px;
+      background: url("../images/gift.svg");
+      background-size: 32px 32px;
+    }
+  }
+
+  .tile-0 { background-color: $empty-tile; }
+  .tile-2 { background-color: $tile-2; color: $text-light; }
+  .tile-4 { background-color: $tile-4; color: $text-light; }
+  .tile-8 { background-color: $tile-8; color: $text-light;}
+  .tile-16 { background-color: $tile-16; color: $text-light; }
+  .tile-32 { background-color: $tile-32; color: $text-light; }
+  .tile-64 { background-color: $tile-64; color: $text-light; }
+  .tile-128 { background-color: $tile-128; color: $text-light; }
+  .tile-256 { background-color: $tile-256; color: $text-light; }
+  .tile-512 { background-color: $tile-512; color: $text-light; }
+  .tile-1024 { background-color: $tile-1024; color: $text-light; }
+  .tile-2048 { background-color: $tile-2048; color: $text-light; }
+}
+
